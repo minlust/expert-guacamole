@@ -1,50 +1,36 @@
-# 👩‍💻 Sabrina
+# Sabrina
 
-**Undergraduate at HKU / Full-Stack Developer**
-
-| | | |
-|:---:|:---:|:---:|
-| 🏫 **HKU** Enrolled Student | 🛠 **10+** Technologies | 💼 **2 mo** PORTMAX Internship |
+**Undergraduate at HKU · Full-Stack Developer**
 
 ---
 
-## 👋 About Me
+## About
 
-Hi! I'm Sabrina, an undergraduate Computer Science student at The University of Hong Kong (enrolled 2025). I'm passionate about programming and love exploring new technologies as I learn. I'm currently building hands-on experience in front-end development and back-end architecture, and I'm proficient with AI-powered coding tools such as Cursor, GitHub Copilot, and Claude Code — leveraging AI to boost development efficiency. I spent 2 months interning at PORTMAX, where I gained my first real taste of team collaboration and the project development workflow. Outside of class, I'm an active member of the open-source community and enjoy learning and sharing with others.
+I'm a Computer Science undergraduate at The University of Hong Kong (enrolled 2025). I enjoy building things with code and exploring new technologies. Currently focused on front-end development and back-end architecture, I work with AI-powered tools like Cursor, GitHub Copilot, and Claude Code to ship faster and learn more.
 
----
+Over the summer I spent two months at PORTMAX as an intern, where I helped build an AI Agent for internal systems — my first real experience with team collaboration and production development workflows. Outside of coursework, I'm active in the open-source community and enjoy learning in public.
 
-## 🛠 Skills
+## Skills
 
-`JavaScript` `TypeScript` `React` `Vue` `Node.js` `Python` `Go` `Docker` `PostgreSQL` `Redis`
+**Languages** — JavaScript, TypeScript, Python, Go
+**Frontend** — React, Vue
+**Backend & Tools** — Node.js, Docker, PostgreSQL, Redis
 
----
-
-## 💼 Internship
+## Experience
 
 ### PORTMAX — Intern Engineer
-> 📅 June 2026 — August 2026 (2 months)
+*Jun 2026 — Aug 2026*
 
-Helped build an AI Agent for the company's internal system. Responsible for developing and debugging agent modules, assisting with prompt engineering and tool-calling workflow design, and collaborating with the team to drive iterative improvements to the system.
+Helped build an AI Agent for the company's internal system. Developed and debugged agent modules, assisted with prompt engineering and tool-calling workflow design, and collaborated with the team on iterative system improvements.
 
----
-
-## 🎓 Education
+## Education
 
 ### The University of Hong Kong — BSc in Computer Science
-> 📅 September 2025 — Present
+*Sep 2025 — Present*
 
-Majoring in Computer Science, systematically studying core courses including data structures, algorithm design, and software engineering, building a solid technical foundation.
+Studying data structures, algorithm design, and software engineering. Building a solid technical foundation through hands-on projects and coursework.
 
----
+## Contact
 
-## 📬 Contact
-
-| | |
-|---|---|
-| 📧 Email | 2409256609@qq.com |
-| 🐙 GitHub | [github.com/minlust](https://github.com/minlust) |
-
----
-
-© 2025 Sabrina · Built with ❤️
+- Email: 2409256609@qq.com
+- GitHub: [github.com/minlust](https://github.com/minlust)
