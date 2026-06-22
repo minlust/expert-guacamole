@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sabrina — Full-Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -11,441 +14,600 @@
       box-sizing: border-box;
     }
 
-    /* ── Base ── */
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: #FAFAF9;
-      color: #18181B;
-      line-height: 1.6;
-      font-size: 15px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+    /* ── Tokens ── */
+    :root {
+      --bg: #FEF9F3;
+      --ink: #1A1A1A;
+      --ink-light: #78716C;
+      --red: #FF4D2E;
+      --blue: #2563EB;
+      --yellow: #FFCC00;
+      --green: #16A34A;
+      --border: #1A1A1A;
+      --border-w: 2.5px;
+      --shadow: 4px 4px 0 #1A1A1A;
+      --shadow-sm: 3px 3px 0 #1A1A1A;
+      --radius: 6px;
     }
 
-    /* ── Layout ── */
-    .container {
-      max-width: 660px;
-      margin: 0 auto;
-      padding: 80px 24px 48px;
+    /* ── Base ── */
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    /* ── Nav ── */
+    .topnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 32px;
+      border-bottom: var(--border-w) solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+    }
+
+    .topnav-brand {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .topnav-status {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border: var(--border-w) solid var(--border);
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .topnav-status::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      display: inline-block;
     }
 
     /* ── Hero ── */
     .hero {
-      margin-bottom: 40px;
+      padding: 72px 32px 56px;
+      border-bottom: var(--border-w) solid var(--border);
     }
 
-    .hero-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: #18181B;
-      color: #FAFAF9;
+    .hero-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-light);
+      margin-bottom: 24px;
+    }
+
+    .hero-name {
+      font-size: clamp(60px, 13vw, 180px);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 0.88;
+      margin-bottom: 28px;
+      color: var(--ink);
+    }
+
+    .hero-sub {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 24px;
-      letter-spacing: 0;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .hero h1 {
-      font-size: 38px;
+    .hero-role {
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 500;
+      color: var(--ink-light);
+    }
+
+    .hero-arrow {
+      display: inline-block;
+      font-size: clamp(18px, 3vw, 26px);
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    /* ── Marquee ── */
+    .marquee {
+      overflow: hidden;
+      padding: 14px 0;
+      background: var(--red);
+      border-bottom: var(--border-w) solid var(--border);
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee span {
+      font-size: 13px;
       font-weight: 600;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      color: #18181B;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #fff;
+      padding: 0 24px;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── Content ── */
+    .content {
+      padding: 0 32px;
+    }
+
+    /* ── Section ── */
+    .section {
+      padding: 56px 0;
+      border-bottom: var(--border-w) solid var(--border);
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    .section-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       margin-bottom: 8px;
     }
 
-    .hero-tagline {
-      font-size: 17px;
-      color: #71717A;
-      font-weight: 400;
-      line-height: 1.5;
-    }
-
-    /* ── Nav ── */
-    .nav {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      padding-bottom: 32px;
-      margin-bottom: 48px;
-      border-bottom: 1px solid #E4E4E7;
-    }
-
-    .nav a {
-      font-size: 14px;
-      color: #71717A;
-      text-decoration: none;
-      transition: color 0.2s ease;
-      position: relative;
-    }
-
-    .nav a:hover {
-      color: #18181B;
-    }
-
-    .nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: #18181B;
-      transition: width 0.2s ease;
-    }
-
-    .nav a:hover::after {
-      width: 100%;
-    }
-
-    /* ── Sections ── */
-    .section {
-      margin-bottom: 56px;
-    }
-
-    .section-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #A1A1AA;
-      font-weight: 500;
-      margin-bottom: 20px;
+    .section-heading {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 28px;
     }
 
     /* ── About ── */
-    .about-text {
-      font-size: 16px;
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .about-statement {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .about-detail {
+      font-size: 15px;
       line-height: 1.8;
-      color: #3F3F46;
+      color: var(--ink-light);
+    }
+
+    .about-detail p + p {
+      margin-top: 16px;
     }
 
     /* ── Skills ── */
-    .skill-group {
-      margin-bottom: 16px;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
 
-    .skill-group:last-child {
-      margin-bottom: 0;
+    .skill-card {
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
     }
 
-    .skill-group-label {
-      font-size: 13px;
-      color: #71717A;
-      margin-bottom: 8px;
-      font-weight: 500;
+    .skill-card-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-light);
+      margin-bottom: 12px;
     }
 
-    .skill-tags {
+    .skill-card-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
     }
 
-    .skill-tag {
+    .tag {
       font-size: 13px;
-      padding: 5px 14px;
-      border: 1px solid #E4E4E7;
+      font-weight: 500;
+      padding: 4px 12px;
+      border: 1.5px solid var(--border);
       border-radius: 100px;
-      color: #3F3F46;
+      background: var(--bg);
+    }
+
+    /* ── Entry cards (experience / education) ── */
+    .entry-card {
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
       background: #fff;
-      transition: border-color 0.2s ease, background 0.2s ease;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .skill-tag:hover {
-      border-color: #A1A1AA;
-      background: #F4F4F5;
-    }
-
-    /* ── Entry (Experience / Education) ── */
-    .entry {
-      margin-bottom: 28px;
-    }
-
-    .entry:last-child {
+    .entry-card:last-child {
       margin-bottom: 0;
     }
 
-    .entry-header {
+    .entry-card:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--border);
+    }
+
+    .entry-card-head {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 16px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
-    .entry-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #18181B;
+    .entry-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
-    .entry-date {
+    .entry-card-date {
       font-size: 13px;
-      color: #A1A1AA;
+      font-weight: 500;
+      color: var(--ink-light);
       white-space: nowrap;
+      padding: 4px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
       flex-shrink: 0;
-      padding-top: 2px;
     }
 
-    .entry-subtitle {
-      font-size: 14px;
-      color: #71717A;
-      margin-bottom: 10px;
+    .entry-card-sub {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--red);
+      margin-bottom: 12px;
     }
 
-    .entry-desc {
-      font-size: 14px;
+    .entry-card-desc {
+      font-size: 15px;
       line-height: 1.75;
-      color: #52525B;
+      color: var(--ink-light);
     }
 
-    /* ── Contact ── */
-    .contact-links {
+    /* ── CTA (Contact) ── */
+    .cta-block {
+      background: var(--ink);
+      color: #fff;
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      padding: 56px 40px;
+      text-align: center;
+    }
+
+    .cta-heading {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .cta-links {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .contact-link {
+    .cta-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: #3F3F46;
-      text-decoration: none;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid #E4E4E7;
-      background: #fff;
-      transition: border-color 0.2s ease, background 0.2s ease;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border: 2.5px solid #fff;
+      border-radius: var(--radius);
+      background: transparent;
+      color: #fff;
       cursor: pointer;
-      width: fit-content;
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
     }
 
-    .contact-link:hover {
-      border-color: #A1A1AA;
-      background: #F4F4F5;
+    .cta-btn:hover {
+      background: #fff;
+      color: var(--ink);
+      transform: translate(-2px, -2px);
     }
 
-    .contact-link svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-      color: #71717A;
+    .cta-btn--primary {
+      background: var(--red);
+      border-color: var(--red);
     }
 
-    .contact-link span {
-      color: #3F3F46;
+    .cta-btn--primary:hover {
+      background: #fff;
+      color: var(--red);
+    }
+
+    .cta-btn svg {
+      width: 18px;
+      height: 18px;
     }
 
     /* ── Footer ── */
     .footer {
-      padding-top: 32px;
-      margin-top: 56px;
-      border-top: 1px solid #E4E4E7;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 32px;
+      border-top: var(--border-w) solid var(--border);
       font-size: 12px;
-      color: #A1A1AA;
-    }
-
-    /* ── Links ── */
-    a {
-      color: #0D9488;
-      transition: color 0.2s ease;
-    }
-
-    a:hover {
-      color: #0F766E;
+      font-weight: 500;
+      color: var(--ink-light);
     }
 
     /* ── Responsive ── */
-    @media (max-width: 640px) {
-      .container {
-        padding: 48px 20px 32px;
+    @media (max-width: 768px) {
+      .topnav { padding: 16px 20px; }
+      .hero { padding: 48px 20px 40px; }
+      .content { padding: 0 20px; }
+      .section { padding: 40px 0; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
       }
 
-      .hero h1 {
-        font-size: 30px;
+      .skills-grid {
+        grid-template-columns: 1fr;
       }
 
-      .hero-tagline {
-        font-size: 15px;
-      }
-
-      .nav {
-        gap: 16px;
-        margin-bottom: 36px;
-        padding-bottom: 24px;
-      }
-
-      .nav a {
-        font-size: 13px;
-      }
-
-      .section {
-        margin-bottom: 40px;
-      }
-
-      .entry-header {
+      .entry-card-head {
         flex-direction: column;
-        gap: 2px;
+        gap: 8px;
       }
 
-      .entry-date {
-        padding-top: 0;
+      .cta-block { padding: 40px 24px; }
+
+      .cta-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer {
+        padding: 16px 20px;
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-name {
+        font-size: clamp(48px, 15vw, 80px);
+      }
+
+      .topnav-status span {
+        display: none;
       }
     }
 
     /* ── Accessibility ── */
     @media (prefers-reduced-motion: reduce) {
+      .marquee-track {
+        animation: none;
+      }
       *, *::before, *::after {
         transition-duration: 0.01ms !important;
       }
     }
 
     :focus-visible {
-      outline: 2px solid #0D9488;
-      outline-offset: 2px;
-      border-radius: 2px;
+      outline: 3px solid var(--red);
+      outline-offset: 3px;
     }
   </style>
 </head>
 <body>
 
-  <main class="container">
+  <!-- Nav -->
+  <nav class="topnav">
+    <div class="topnav-brand">Sabrina<span style="color:var(--red)">.</span></div>
+    <div class="topnav-status"><span>Open to opportunities</span></div>
+  </nav>
 
-    <!-- Hero -->
-    <div class="hero">
-      <div class="hero-avatar">S</div>
-      <h1>Sabrina</h1>
-      <p class="hero-tagline">Undergraduate at HKU &middot; Full-Stack Developer</p>
+  <!-- Hero -->
+  <header class="hero">
+    <p class="hero-label">Portfolio / 2025</p>
+    <h1 class="hero-name">SABRINA</h1>
+    <div class="hero-sub">
+      <span class="hero-role">Full-Stack Developer</span>
+      <span class="hero-arrow">&rarr;</span>
+      <span class="hero-role">HKU Undergraduate</span>
     </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav class="nav" aria-label="Page sections">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <!-- Marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Available for internships</span><span>&#9679;</span>
+      <span>Full-Stack Development</span><span>&#9679;</span>
+      <span>AI &amp; Automation</span><span>&#9679;</span>
+      <span>Open Source</span><span>&#9679;</span>
+      <span>Available for internships</span><span>&#9679;</span>
+      <span>Full-Stack Development</span><span>&#9679;</span>
+      <span>AI &amp; Automation</span><span>&#9679;</span>
+      <span>Open Source</span><span>&#9679;</span>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
 
     <!-- About -->
     <section class="section" id="about">
-      <h2 class="section-label">About</h2>
-      <p class="about-text">
-        I'm a Computer Science undergraduate at The University of Hong Kong (enrolled 2025).
-        I enjoy building things with code and exploring new technologies. Currently focused on
-        front-end development and back-end architecture, I work with AI-powered tools like
-        Cursor, GitHub Copilot, and Claude Code to ship faster and learn more.
-      </p>
-      <p class="about-text" style="margin-top: 12px;">
-        Over the summer I spent two months at PORTMAX as an intern, where I helped build an
-        AI Agent for internal systems — my first real experience with team collaboration and
-        production development workflows. Outside of coursework, I'm active in the open-source
-        community and enjoy learning in public.
-      </p>
+      <p class="section-num">01</p>
+      <h2 class="section-heading">About</h2>
+      <div class="about-grid">
+        <p class="about-statement">
+          I build things with code — and I use AI to build them faster.
+        </p>
+        <div class="about-detail">
+          <p>
+            I'm a Computer Science undergraduate at The University of Hong Kong,
+            where I'm building a foundation in data structures, algorithms, and
+            software engineering.
+          </p>
+          <p>
+            Over the summer I interned at PORTMAX, where I helped build an AI Agent
+            for internal systems — working on prompt engineering, tool-calling
+            workflows, and iterative debugging with a real engineering team.
+          </p>
+          <p>
+            I work fluently with Cursor, GitHub Copilot, and Claude Code. Outside
+            of coursework, I contribute to open source and learn in public.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- Skills -->
     <section class="section" id="skills">
-      <h2 class="section-label">Skills</h2>
-
-      <div class="skill-group">
-        <div class="skill-group-label">Languages</div>
-        <div class="skill-tags">
-          <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Go</span>
+      <p class="section-num">02</p>
+      <h2 class="section-heading">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-label">Languages</div>
+          <div class="skill-card-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">Go</span>
+          </div>
         </div>
-      </div>
-
-      <div class="skill-group">
-        <div class="skill-group-label">Frontend</div>
-        <div class="skill-tags">
-          <span class="skill-tag">React</span>
-          <span class="skill-tag">Vue</span>
+        <div class="skill-card">
+          <div class="skill-card-label">Frontend</div>
+          <div class="skill-card-tags">
+            <span class="tag">React</span>
+            <span class="tag">Vue</span>
+          </div>
         </div>
-      </div>
-
-      <div class="skill-group">
-        <div class="skill-group-label">Backend &amp; Tools</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Node.js</span>
-          <span class="skill-tag">Docker</span>
-          <span class="skill-tag">PostgreSQL</span>
-          <span class="skill-tag">Redis</span>
+        <div class="skill-card">
+          <div class="skill-card-label">Backend &amp; Tools</div>
+          <div class="skill-card-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Docker</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Redis</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Experience -->
     <section class="section" id="experience">
-      <h2 class="section-label">Experience</h2>
-
-      <div class="entry">
-        <div class="entry-header">
-          <h3 class="entry-title">PORTMAX</h3>
-          <span class="entry-date">Jun 2026 — Aug 2026</span>
+      <p class="section-num">03</p>
+      <h2 class="section-heading">Experience</h2>
+      <div class="entry-card">
+        <div class="entry-card-head">
+          <h3 class="entry-card-title">PORTMAX</h3>
+          <span class="entry-card-date">Jun — Aug 2026</span>
         </div>
-        <p class="entry-subtitle">Intern Engineer</p>
-        <p class="entry-desc">
-          Helped build an AI Agent for the company's internal system. Developed and debugged
-          agent modules, assisted with prompt engineering and tool-calling workflow design,
-          and collaborated with the team on iterative system improvements.
+        <p class="entry-card-sub">Intern Engineer</p>
+        <p class="entry-card-desc">
+          Built an AI Agent for the company's internal system. Developed and debugged
+          agent modules, worked on prompt engineering and tool-calling workflow design,
+          and collaborated with the team on iterative improvements.
         </p>
       </div>
     </section>
 
     <!-- Education -->
     <section class="section" id="education">
-      <h2 class="section-label">Education</h2>
-
-      <div class="entry">
-        <div class="entry-header">
-          <h3 class="entry-title">The University of Hong Kong</h3>
-          <span class="entry-date">Sep 2025 — Present</span>
+      <p class="section-num">04</p>
+      <h2 class="section-heading">Education</h2>
+      <div class="entry-card">
+        <div class="entry-card-head">
+          <h3 class="entry-card-title">The University of Hong Kong</h3>
+          <span class="entry-card-date">Sep 2025 — Present</span>
         </div>
-        <p class="entry-subtitle">BSc in Computer Science</p>
-        <p class="entry-desc">
-          Studying data structures, algorithm design, and software engineering.
-          Building a solid technical foundation through hands-on projects and coursework.
+        <p class="entry-card-sub">BSc in Computer Science</p>
+        <p class="entry-card-desc">
+          Data structures, algorithm design, software engineering.
+          Building a solid technical foundation through hands-on projects.
         </p>
       </div>
     </section>
 
     <!-- Contact -->
     <section class="section" id="contact">
-      <h2 class="section-label">Contact</h2>
-
-      <div class="contact-links">
-        <a href="mailto:2409256609@qq.com" class="contact-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-          <span>2409256609@qq.com</span>
-        </a>
-
-        <a href="https://github.com/minlust" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-          </svg>
-          <span>github.com/minlust</span>
-        </a>
+      <p class="section-num">05</p>
+      <h2 class="section-heading">Get in Touch</h2>
+      <div class="cta-block">
+        <h3 class="cta-heading">Let's build<br>something.</h3>
+        <div class="cta-links">
+          <a href="mailto:2409256609@qq.com" class="cta-btn cta-btn--primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Email Me
+          </a>
+          <a href="https://github.com/minlust" target="_blank" rel="noopener noreferrer" class="cta-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      &copy; 2025 Sabrina
-    </footer>
+  </div>
 
-  </main>
+  <!-- Footer -->
+  <footer class="footer">
+    <span>&copy; 2025 Sabrina</span>
+    <span>Hong Kong</span>
+  </footer>
 
 </body>
 </html>

@@ -1,36 +1,32 @@
 # Sabrina
 
-**Undergraduate at HKU · Full-Stack Developer**
+**Full-Stack Developer / HKU Undergraduate**
 
 ---
 
 ## About
 
-I'm a Computer Science undergraduate at The University of Hong Kong (enrolled 2025). I enjoy building things with code and exploring new technologies. Currently focused on front-end development and back-end architecture, I work with AI-powered tools like Cursor, GitHub Copilot, and Claude Code to ship faster and learn more.
+I build things with code — and I use AI to build them faster.
 
-Over the summer I spent two months at PORTMAX as an intern, where I helped build an AI Agent for internal systems — my first real experience with team collaboration and production development workflows. Outside of coursework, I'm active in the open-source community and enjoy learning in public.
+I'm a Computer Science undergraduate at The University of Hong Kong. Over the summer I interned at PORTMAX, where I helped build an AI Agent for internal systems. I work fluently with Cursor, GitHub Copilot, and Claude Code. Outside of coursework, I contribute to open source and learn in public.
 
 ## Skills
 
-**Languages** — JavaScript, TypeScript, Python, Go
-**Frontend** — React, Vue
-**Backend & Tools** — Node.js, Docker, PostgreSQL, Redis
+| Languages | Frontend | Backend & Tools |
+|-----------|----------|-----------------|
+| JavaScript, TypeScript, Python, Go | React, Vue | Node.js, Docker, PostgreSQL, Redis |
 
 ## Experience
 
-### PORTMAX — Intern Engineer
-*Jun 2026 — Aug 2026*
-
-Helped build an AI Agent for the company's internal system. Developed and debugged agent modules, assisted with prompt engineering and tool-calling workflow design, and collaborated with the team on iterative system improvements.
+**PORTMAX — Intern Engineer** / Jun — Aug 2026
+Built an AI Agent for internal systems. Prompt engineering, tool-calling workflows, iterative debugging.
 
 ## Education
 
-### The University of Hong Kong — BSc in Computer Science
-*Sep 2025 — Present*
-
-Studying data structures, algorithm design, and software engineering. Building a solid technical foundation through hands-on projects and coursework.
+**The University of Hong Kong — BSc Computer Science** / Sep 2025 — Present
+Data structures, algorithms, software engineering.
 
 ## Contact
 
-- Email: 2409256609@qq.com
-- GitHub: [github.com/minlust](https://github.com/minlust)
+- **Email:** 2409256609@qq.com
+- **GitHub:** [github.com/minlust](https://github.com/minlust)
