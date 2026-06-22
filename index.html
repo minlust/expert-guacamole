@@ -3,531 +3,611 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sabrina — Personal Portfolio</title>
+  <title>Sabrina — Full-Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    /* ── Animated background ── */
+    /* ── Tokens ── */
+    :root {
+      --bg: #FEF9F3;
+      --ink: #1A1A1A;
+      --ink-light: #78716C;
+      --red: #FF4D2E;
+      --blue: #2563EB;
+      --yellow: #FFCC00;
+      --green: #16A34A;
+      --border: #1A1A1A;
+      --border-w: 2.5px;
+      --shadow: 4px 4px 0 #1A1A1A;
+      --shadow-sm: 3px 3px 0 #1A1A1A;
+      --radius: 6px;
+    }
+
+    /* ── Base ── */
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #333;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* Floating decorative shapes */
-    body::before,
-    body::after {
-      content: '';
-      position: fixed;
-      border-radius: 50%;
-      opacity: 0.12;
-      pointer-events: none;
-    }
-    body::before {
-      width: 400px; height: 400px;
-      background: #fff;
-      top: -80px; left: -120px;
-      animation: floatA 18s ease-in-out infinite;
-    }
-    body::after {
-      width: 300px; height: 300px;
-      background: #fff;
-      bottom: -60px; right: -100px;
-      animation: floatB 22s ease-in-out infinite;
-    }
-
-    @keyframes floatA {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50%      { transform: translate(60px, 40px) scale(1.08); }
-    }
-    @keyframes floatB {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50%      { transform: translate(-50px, -30px) scale(1.1); }
-    }
-
-    /* Extra floating shapes via pseudo-elements on a wrapper */
-    .bg-shapes {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-    .bg-shapes span {
-      position: absolute;
-      display: block;
-      border-radius: 50%;
-      opacity: 0.07;
-      background: #fff;
-    }
-    .bg-shapes span:nth-child(1) { width: 180px; height: 180px; top: 15%; left: 70%; animation: floatA 14s ease-in-out infinite; }
-    .bg-shapes span:nth-child(2) { width: 120px; height: 120px; top: 60%; left: 10%; animation: floatB 20s ease-in-out infinite; }
-    .bg-shapes span:nth-child(3) { width: 90px;  height: 90px;  top: 80%; left: 55%; animation: floatA 25s ease-in-out infinite; }
-    .bg-shapes span:nth-child(4) { width: 200px; height: 200px; top: 30%; left: 25%; animation: floatB 16s ease-in-out infinite; opacity: 0.04; }
-
-    /* ── Card ── */
-    .card {
-      background: #fff;
-      border-radius: 24px;
-      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
-      max-width: 760px;
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-      z-index: 1;
-      animation: cardIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    @keyframes cardIn {
-      from { opacity: 0; transform: translateY(40px) scale(0.97); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* ── Header ── */
-    .header {
-      background: linear-gradient(135deg, #2d3436 0%, #636e72 50%, #2d3436 100%);
-      background-size: 200% 200%;
-      animation: gradientShift 8s ease infinite;
-      color: #fff;
-      text-align: center;
-      padding: 56px 32px 36px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50%      { background-position: 100% 50%; }
-    }
-
-    /* Decorative dots pattern in header */
-    .header::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
-      background-size: 20px 20px;
-      pointer-events: none;
-    }
-
-    .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid rgba(255, 255, 255, 0.35);
-      background: linear-gradient(135deg, #a29bfe, #6c5ce7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 52px;
-      color: #fff;
-      margin: 0 auto 20px;
-      position: relative;
-      z-index: 1;
-      transition: transform 0.4s ease;
-    }
-    .avatar:hover {
-      transform: scale(1.08) rotate(-4deg);
-    }
-
-    .header h1 {
-      font-size: 34px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      position: relative;
-      z-index: 1;
-      letter-spacing: 1px;
-    }
-
-    .header .title {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
       font-size: 16px;
-      opacity: 0.8;
-      font-weight: 400;
-      position: relative;
-      z-index: 1;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Body ── */
-    .body {
-      padding: 40px 44px;
+    a {
+      color: var(--ink);
+      text-decoration: none;
     }
 
-    .section {
-      margin-bottom: 36px;
-      animation: fadeUp 0.6s ease both;
-    }
-    .section:nth-child(1) { animation-delay: 0.15s; }
-    .section:nth-child(2) { animation-delay: 0.25s; }
-    .section:nth-child(3) { animation-delay: 0.35s; }
-    .section:nth-child(4) { animation-delay: 0.45s; }
-    .section:nth-child(5) { animation-delay: 0.55s; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* ── Nav ── */
+    .topnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 32px;
+      border-bottom: var(--border-w) solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
     }
 
-    .section:last-child { margin-bottom: 0; }
-
-    .section-title {
-      font-size: 19px;
+    .topnav-brand {
+      font-size: 18px;
       font-weight: 700;
-      color: #2d3436;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      letter-spacing: -0.02em;
     }
 
-    .section-title .icon {
-      width: 32px;
-      height: 32px;
+    .topnav-status {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border: var(--border-w) solid var(--border);
+      border-radius: 100px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: #fff;
-      border-radius: 10px;
-      font-size: 15px;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
+      gap: 6px;
     }
-    .section:hover .section-title .icon {
-      transform: rotate(-8deg) scale(1.1);
+
+    .topnav-status::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      display: inline-block;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 72px 32px 56px;
+      border-bottom: var(--border-w) solid var(--border);
+    }
+
+    .hero-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-light);
+      margin-bottom: 24px;
+    }
+
+    .hero-name {
+      font-size: clamp(60px, 13vw, 180px);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 0.88;
+      margin-bottom: 28px;
+      color: var(--ink);
+    }
+
+    .hero-sub {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-role {
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 500;
+      color: var(--ink-light);
+    }
+
+    .hero-arrow {
+      display: inline-block;
+      font-size: clamp(18px, 3vw, 26px);
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    /* ── Marquee ── */
+    .marquee {
+      overflow: hidden;
+      padding: 14px 0;
+      background: var(--red);
+      border-bottom: var(--border-w) solid var(--border);
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee span {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #fff;
+      padding: 0 24px;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── Content ── */
+    .content {
+      padding: 0 32px;
+    }
+
+    /* ── Section ── */
+    .section {
+      padding: 56px 0;
+      border-bottom: var(--border-w) solid var(--border);
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    .section-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+
+    .section-heading {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 28px;
     }
 
     /* ── About ── */
-    .about-text {
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .about-statement {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .about-detail {
       font-size: 15px;
-      line-height: 1.9;
-      color: #555;
+      line-height: 1.8;
+      color: var(--ink-light);
+    }
+
+    .about-detail p + p {
+      margin-top: 16px;
     }
 
     /* ── Skills ── */
-    .skill-tags {
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .skill-card-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-light);
+      margin-bottom: 12px;
+    }
+
+    .skill-card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 6px;
     }
 
-    .skill-tag {
-      background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
-      color: #fff;
+    .tag {
       font-size: 13px;
-      padding: 7px 18px;
-      border-radius: 20px;
       font-weight: 500;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      cursor: default;
-    }
-    .skill-tag:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(108, 92, 231, 0.35);
-    }
-    .skill-tag:nth-child(even) {
-      background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-    }
-    .skill-tag:nth-child(3n) {
-      background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+      padding: 4px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      background: var(--bg);
     }
 
-    /* ── Timeline ── */
-    .timeline {
-      position: relative;
-      padding-left: 6px;
+    /* ── Entry cards (experience / education) ── */
+    .entry-card {
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .timeline-item {
+    .entry-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .entry-card:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--border);
+    }
+
+    .entry-card-head {
       display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       gap: 16px;
-      margin-bottom: 22px;
-      position: relative;
-    }
-    .timeline-item:last-child { margin-bottom: 0; }
-
-    /* Connecting line */
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: 5px;
-      top: 20px;
-      bottom: -22px;
-      width: 2px;
-      background: linear-gradient(to bottom, #6c5ce7, rgba(108, 92, 231, 0.15));
-    }
-    .timeline-item:last-child::before {
-      display: none;
-    }
-
-    .timeline-dot {
-      flex-shrink: 0;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #6c5ce7;
-      margin-top: 6px;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.2);
-      transition: box-shadow 0.3s ease;
-    }
-    .timeline-item:hover .timeline-dot {
-      box-shadow: 0 0 0 6px rgba(108, 92, 231, 0.3);
-    }
-
-    .timeline-content {
-      background: #f8f9fa;
-      padding: 14px 18px;
-      border-radius: 12px;
-      flex: 1;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    .timeline-item:hover .timeline-content {
-      background: #f0efff;
-      transform: translateX(4px);
-    }
-
-    .timeline-content h4 {
-      font-size: 15px;
-      font-weight: 600;
-      color: #2d3436;
-    }
-
-    .timeline-content .sub {
-      font-size: 13px;
-      color: #888;
       margin-bottom: 6px;
     }
 
-    .timeline-content p {
-      font-size: 14px;
-      color: #555;
-      line-height: 1.6;
+    .entry-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
-    /* ── Stats bar ── */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-bottom: 36px;
-      animation: fadeUp 0.6s ease both;
-      animation-delay: 0.1s;
-    }
-
-    .stat-item {
-      text-align: center;
-      padding: 20px 12px;
-      background: linear-gradient(135deg, #f8f9fa, #fff);
-      border-radius: 16px;
-      border: 1px solid #eee;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .stat-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .stat-number {
-      font-size: 28px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
+    .entry-card-date {
       font-size: 13px;
-      color: #888;
-      margin-top: 4px;
-    }
-
-    /* ── Contact ── */
-    .contact-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .contact-list li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: #555;
-      padding: 12px 16px;
-      background: #f8f9fa;
-      border-radius: 12px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .contact-list li:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-    }
-
-    .contact-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink-light);
+      white-space: nowrap;
+      padding: 4px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
       flex-shrink: 0;
     }
 
-    .ci-email    { background: #ffeaa7; }
-    .ci-phone    { background: #dfe6e9; }
-    .ci-location { background: #fab1a0; }
-    .ci-github   { background: #2d3436; color: #fff; }
+    .entry-card-sub {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .entry-card-desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink-light);
+    }
+
+    /* ── CTA (Contact) ── */
+    .cta-block {
+      background: var(--ink);
+      color: #fff;
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      padding: 56px 40px;
+      text-align: center;
+    }
+
+    .cta-heading {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .cta-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border: 2.5px solid #fff;
+      border-radius: var(--radius);
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+
+    .cta-btn:hover {
+      background: #fff;
+      color: var(--ink);
+      transform: translate(-2px, -2px);
+    }
+
+    .cta-btn--primary {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .cta-btn--primary:hover {
+      background: #fff;
+      color: var(--red);
+    }
+
+    .cta-btn svg {
+      width: 18px;
+      height: 18px;
+    }
 
     /* ── Footer ── */
     .footer {
-      text-align: center;
-      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 32px;
+      border-top: var(--border-w) solid var(--border);
       font-size: 12px;
-      color: rgba(255, 255, 255, 0.6);
-      position: relative;
-      z-index: 1;
-      margin-top: 8px;
+      font-weight: 500;
+      color: var(--ink-light);
     }
 
     /* ── Responsive ── */
-    @media (max-width: 500px) {
-      .body { padding: 28px 24px; }
-      .contact-list { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: 1fr; }
-      .header { padding: 40px 24px 28px; }
-      .header h1 { font-size: 28px; }
+    @media (max-width: 768px) {
+      .topnav { padding: 16px 20px; }
+      .hero { padding: 48px 20px 40px; }
+      .content { padding: 0 20px; }
+      .section { padding: 40px 0; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .entry-card-head {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .cta-block { padding: 40px 24px; }
+
+      .cta-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer {
+        padding: 16px 20px;
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-name {
+        font-size: clamp(48px, 15vw, 80px);
+      }
+
+      .topnav-status span {
+        display: none;
+      }
+    }
+
+    /* ── Accessibility ── */
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track {
+        animation: none;
+      }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--red);
+      outline-offset: 3px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Background floating shapes -->
-  <div class="bg-shapes">
-    <span></span><span></span><span></span><span></span>
+  <!-- Nav -->
+  <nav class="topnav">
+    <div class="topnav-brand">Sabrina<span style="color:var(--red)">.</span></div>
+    <div class="topnav-status"><span>Open to opportunities</span></div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <p class="hero-label">Portfolio / 2025</p>
+    <h1 class="hero-name">SABRINA</h1>
+    <div class="hero-sub">
+      <span class="hero-role">Full-Stack Developer</span>
+      <span class="hero-arrow">&rarr;</span>
+      <span class="hero-role">HKU Undergraduate</span>
+    </div>
+  </header>
+
+  <!-- Marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Available for internships</span><span>&#9679;</span>
+      <span>Full-Stack Development</span><span>&#9679;</span>
+      <span>AI &amp; Automation</span><span>&#9679;</span>
+      <span>Open Source</span><span>&#9679;</span>
+      <span>Available for internships</span><span>&#9679;</span>
+      <span>Full-Stack Development</span><span>&#9679;</span>
+      <span>AI &amp; Automation</span><span>&#9679;</span>
+      <span>Open Source</span><span>&#9679;</span>
+    </div>
   </div>
 
-  <div class="card">
-    <div class="header">
-      <div class="avatar">👩‍💻</div>
-      <h1>Sabrina</h1>
-      <p class="title">Undergraduate at HKU / Full-Stack Developer</p>
-    </div>
+  <!-- Content -->
+  <div class="content">
 
-    <div class="body">
-
-      <!-- Stats highlights -->
-      <div class="stats">
-        <div class="stat-item">
-          <div class="stat-number">HKU</div>
-          <div class="stat-label">Enrolled Student</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">10+</div>
-          <div class="stat-label">Technologies</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">2 mo</div>
-          <div class="stat-label">PORTMAX Internship</div>
+    <!-- About -->
+    <section class="section" id="about">
+      <p class="section-num">01</p>
+      <h2 class="section-heading">About</h2>
+      <div class="about-grid">
+        <p class="about-statement">
+          I build things with code — and I use AI to build them faster.
+        </p>
+        <div class="about-detail">
+          <p>
+            I'm a Computer Science undergraduate at The University of Hong Kong,
+            where I'm building a foundation in data structures, algorithms, and
+            software engineering.
+          </p>
+          <p>
+            Over the summer I interned at PORTMAX, where I helped build an AI Agent
+            for internal systems — working on prompt engineering, tool-calling
+            workflows, and iterative debugging with a real engineering team.
+          </p>
+          <p>
+            I work fluently with Cursor, GitHub Copilot, and Claude Code. Outside
+            of coursework, I contribute to open source and learn in public.
+          </p>
         </div>
       </div>
+    </section>
 
-      <div class="section">
-        <div class="section-title">
-          <span class="icon">👋</span> About Me
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <p class="section-num">02</p>
+      <h2 class="section-heading">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-label">Languages</div>
+          <div class="skill-card-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">Go</span>
+          </div>
         </div>
-        <p class="about-text">
-          Hi! I'm Sabrina, an undergraduate Computer Science student at The University of Hong Kong (enrolled 2025).
-          I'm passionate about programming and love exploring new technologies as I learn.
-          I'm currently building hands-on experience in front-end development and back-end architecture,
-          and I'm proficient with AI-powered coding tools such as Cursor, GitHub Copilot, and Claude Code —
-          leveraging AI to boost development efficiency. I spent 2 months interning at PORTMAX,
-          where I gained my first real taste of team collaboration and the project development workflow.
-          Outside of class, I'm an active member of the open-source community and enjoy learning and sharing with others.
+        <div class="skill-card">
+          <div class="skill-card-label">Frontend</div>
+          <div class="skill-card-tags">
+            <span class="tag">React</span>
+            <span class="tag">Vue</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-label">Backend &amp; Tools</div>
+          <div class="skill-card-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Docker</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Redis</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <p class="section-num">03</p>
+      <h2 class="section-heading">Experience</h2>
+      <div class="entry-card">
+        <div class="entry-card-head">
+          <h3 class="entry-card-title">PORTMAX</h3>
+          <span class="entry-card-date">Jun — Aug 2026</span>
+        </div>
+        <p class="entry-card-sub">Intern Engineer</p>
+        <p class="entry-card-desc">
+          Built an AI Agent for the company's internal system. Developed and debugged
+          agent modules, worked on prompt engineering and tool-calling workflow design,
+          and collaborated with the team on iterative improvements.
         </p>
       </div>
+    </section>
 
-      <div class="section">
-        <div class="section-title">
-          <span class="icon">🛠</span> Skills
+    <!-- Education -->
+    <section class="section" id="education">
+      <p class="section-num">04</p>
+      <h2 class="section-heading">Education</h2>
+      <div class="entry-card">
+        <div class="entry-card-head">
+          <h3 class="entry-card-title">The University of Hong Kong</h3>
+          <span class="entry-card-date">Sep 2025 — Present</span>
         </div>
-        <div class="skill-tags">
-          <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">React</span>
-          <span class="skill-tag">Vue</span>
-          <span class="skill-tag">Node.js</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Go</span>
-          <span class="skill-tag">Docker</span>
-          <span class="skill-tag">PostgreSQL</span>
-          <span class="skill-tag">Redis</span>
+        <p class="entry-card-sub">BSc in Computer Science</p>
+        <p class="entry-card-desc">
+          Data structures, algorithm design, software engineering.
+          Building a solid technical foundation through hands-on projects.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <p class="section-num">05</p>
+      <h2 class="section-heading">Get in Touch</h2>
+      <div class="cta-block">
+        <h3 class="cta-heading">Let's build<br>something.</h3>
+        <div class="cta-links">
+          <a href="mailto:2409256609@qq.com" class="cta-btn cta-btn--primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Email Me
+          </a>
+          <a href="https://github.com/minlust" target="_blank" rel="noopener noreferrer" class="cta-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
         </div>
       </div>
+    </section>
 
-      <div class="section">
-        <div class="section-title">
-          <span class="icon">💼</span> Internship
-        </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h4>PORTMAX — Intern Engineer</h4>
-              <p class="sub">June 2026 — August 2026 (2 months)</p>
-              <p>Helped build an AI Agent for the company's internal system. Responsible for developing and debugging agent modules, assisting with prompt engineering and tool-calling workflow design, and collaborating with the team to drive iterative improvements to the system.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">
-          <span class="icon">🎓</span> Education
-        </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h4>The University of Hong Kong — BSc in Computer Science</h4>
-              <p class="sub">September 2025 — Present</p>
-              <p>Majoring in Computer Science, systematically studying core courses including data structures, algorithm design, and software engineering, building a solid technical foundation.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-title">
-          <span class="icon">📬</span> Contact
-        </div>
-        <ul class="contact-list">
-          <li>
-            <span class="contact-icon ci-email">📧</span>
-            <span>2409256609@qq.com</span>
-          </li>
-          <li>
-            <span class="contact-icon ci-github">🐙</span>
-            <a href="https://github.com/minlust" target="_blank" rel="noopener noreferrer" style="color:#555;text-decoration:none;border-bottom:1px dashed #aaa;transition:color .2s,border-color .2s;" onmouseover="this.style.color='#6c5ce7';this.style.borderColor='#6c5ce7'" onmouseout="this.style.color='#555';this.style.borderColor='#aaa'">github.com/minlust</a>
-          </li>
-        </ul>
-      </div>
-
-    </div>
   </div>
 
-  <p class="footer">© 2025 Sabrina · Built with ❤️</p>
+  <!-- Footer -->
+  <footer class="footer">
+    <span>&copy; 2025 Sabrina</span>
+    <span>Hong Kong</span>
+  </footer>
 
 </body>
 </html>
